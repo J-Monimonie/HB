@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>留言板</title>
+  <link rel="stylesheet" href="comment.css">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+ 
+ <style>
+/* 保持你的样式不变 */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden; /* 禁用横向滚动条 */
+    }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* 确保内容纵向排列 */
+  width: 100%;
+    }
+
+
+    .main-nav {
+      width: 100%; /* 确保导航栏占据全屏宽度 */
+      height: 60px;
+      position: sticky;
+      z-index: 999;
+      top: 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 18vh;
+      background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.6));
+      backdrop-filter: blur(13px);
+      padding: 0; /* 移除 padding，防止空隙 */
+    }
+
+    .main-nav .BBlogo {
+      width: 220px;
+      height: 100%;
+      position: absolute;
+      left: 5%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap; /* 确保文字不换行 */
+    }
+
+    .main-nav .BBlogo img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    .main-nav .BBlogo span {
+      font: 100 22px "ZCOOL KuaiLe";
+      letter-spacing: 5px;
+      padding-left: 20px;
+    }
+
+    .main-nav ul {
+      width: 600px;
+      height: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      position: absolute;
+      right: 5%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-nav ul .nav-box {
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      width: 115px;
+      height: 5px;
+      border-radius: 2px;
+      z-index: 999;
+      transition: .5s;
+    }
+
+    .main-nav ul li {
+      width: 150px;
+      text-align: center;
+    }
+
+    .main-nav ul li a {
+      color: #000;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: 60px;
+      text-align: center;
+      text-decoration: none; /* 取消下划线 */
+    }
+
+.messages {
+  margin-top: 50px;
+  width: 800px;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.43);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px #00000020;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input,
+textarea {
+  border: none;
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#username {
+  height: 60px;
+left:100px;
+}
+
+#message {
+  height: 150px;
+}
+
+#avatarInput {
+  margin-bottom: 20px;
+}
+
+.message h1 {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 100px;
+  font-size: 80px;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 5px;
+}
+
+#submitBtn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+  border: none;
+  font-size: 24px;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+#messageBoard {
+  width: 100%;
+  text-align: left;
+}
+
+@keyframes messageFadeIn {
+  to {
+    opacity:1;
+  }
+}
+
+.message {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  opacity: 0;
+  animation: messageFadeIn 0.5s ease forwards;
+  background-image: linear-gradient(90deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-color: #fff;
+  margin: 50px 0;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px #00000026;
+  text-shadow: 0px 0px 20px #ffffff;
+}
+
+.message-info {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  position: relative;
+}
+
+.info {
+  transform: translateY(-30px);
+}
+
+.info img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 8px #fff solid;
+}
+
+strong {
+  position: absolute;
+  width: 600px;
+  letter-spacing: 2px;
+  top: 50px;
+  left: 150px;
+}
+
+.message-info span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+}
+
+.content {
+  font-size: 24px;
+  margin: 20px;
+  width: 95%;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="main">
+  <div class="main-nav">
+    <div class="BBlogo">
+      <img src="images/BB头像.jpg" alt="">
+      <span>♥亲亲bb生日快乐♥ </span>
+    </div>
+    <ul>
+      <li><a href="./index.html">生日快乐</a></li>
+      <li><a href="./index.html">关于bb</a></li>
+      <li><a href="./Template.html">点点滴滴</a></li>
+      <li><a href="./comment.html">留言板</a></li>
+      <li><a href="./Login.html">登录</a></li>
+    </ul>
+    <div class="nav-box"></div>
+  </div>
+
+  <div class="messages">
+    <h1>留言板</h1>
+    <div class="form">
+      <input type="text" id="username" placeholder="用户名">
+      <input type="file" id="avatarInput" accept="image/*" placeholder="上传头像">
+      <textarea id="message" placeholder="留言内容"></textarea>
+      <button id="submitBtn">提交</button>
+    </div>
+    <div id="messageBoard">
+    </div>
+  </div>
+</div>
+
+<script>
+  // 页面加载时，从localStorage中获取留言数据并显示
+  window.onload = function() {
+    var savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    savedMessages.forEach(function(message, index) {
+      displayMessage(message.username, message.content, message.time, message.avatar, index);
+    });
+  };
+
+  // 点击留言按钮后，保存留言并更新页面
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    var username = document.getElementById('username').value;
+    var message = document.getElementById('message').value;
+    var avatar = document.getElementById('avatarInput').files[0]; // 获取上传的头像
+    
+    // 如果留言内容为空，弹出提示并返回
+    if (message === '') {
+      alert('请输入内容');
+      return;
+    }
+
+    // 如果用户名为空，将用户名设置为“匿名”
+    if (username === '') {
+      username = '匿名';
+    }
+
+    // 如果没有上传头像，使用默认头像
+    var avatarUrl = './images/bb cuteee.jpg'; // 默认头像路径
+    if (avatar) {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        avatarUrl = reader.result; // 将头像读取为base64编码
+        saveMessage(username, message, avatarUrl);
+      };
+      reader.readAsDataURL(avatar);
+    } else {
+      saveMessage(username, message, avatarUrl);
+    }
+
+    // 清空输入框
+    document.getElementById('username').value = '';
+    document.getElementById('message').value = '';
+    document.getElementById('avatarInput').value = '';
+  });
+
+  // 保存留言并显示的函数
+  function saveMessage(username, message, avatarUrl) {
+    var time = getCurrentTime();
+    displayMessage(username, message, time, avatarUrl);
+
+    // 将留言保存到localStorage
+    var savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    savedMessages.push({ username: username, content: message, time: time, avatar: avatarUrl });
+    localStorage.setItem('messages', JSON.stringify(savedMessages));
+  }
+
+  // 显示留言的函数
+  function displayMessage(username, message, time, avatarUrl, index) {
+    var messageBoard = document.getElementById('messageBoard');
+    var newMessage = document.createElement('div');
+    newMessage.classList.add('message');
+    newMessage.setAttribute('data-index', index);
+    newMessage.innerHTML = `
+      <div class="message-info">
+        <div class="info">
+          <img src="${avatarUrl}" width="50px" height="50px">
+          <strong>${username}</strong>
+        </div>
+        <span>release at: ${time}</span>
+        <button class="delete-btn">删除</button>
+      </div>
+      <div class="content">${message}</div>
+    `;
+    messageBoard.insertBefore(newMessage, messageBoard.firstChild);
+
+    // 为删除按钮添加事件监听器
+    newMessage.querySelector('.delete-btn').addEventListener('click', function() {
+      deleteMessage(newMessage);
+    });
+  }
+
+  // 删除留言的函数
+  function deleteMessage(messageElement) {
+    var index = messageElement.getAttribute('data-index');
+    var savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+
+    // 删除相应索引的留言
+    savedMessages.splice(index, 1);
+
+    // 更新localStorage
+    localStorage.setItem('messages', JSON.stringify(savedMessages));
+
+    // 从页面中移除留言
+    messageElement.remove();
+
+    // 重新加载留言，以确保data-index正确更新
+    reloadMessages();
+  }
+
+  // 重新加载留言的函数
+  function reloadMessages() {
+    var messageBoard = document.getElementById('messageBoard');
+    messageBoard.innerHTML = ''; // 清空留言板
+    var savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    savedMessages.forEach(function(message, index) {
+      displayMessage(message.username, message.content, message.time, message.avatar, index);
+    });
+  }
+
+  // 获取当前时间的函数
+  function getCurrentTime() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = ('0' + (now.getMonth() + 1)).slice(-2); // 月份需要加上 1
+    var day = ('0' + now.getDate()).slice(-2);
+    var hours = ('0' + now.getHours()).slice(-2);
+    var minutes = ('0' + now.getMinutes()).slice(-2);
+    var seconds = ('0' + now.getSeconds()).slice(-2);
+    return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+  }
+</script>
+</body>
+</html>
+
+
+

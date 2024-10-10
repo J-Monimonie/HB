@@ -1,0 +1,454 @@
+/* Write some CSS below */
+
+/*TIPS For FONTS:
+.zcool-kuaile-regular {
+  font-family: "ZCOOL KuaiLe", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+*/
+
+ul{
+  list-style: none; /* 移除默认的项目符号 */
+}
+
+  /* 设置全局 box-sizing，避免宽度计算溢出 */
+  * {
+    box-sizing: border-box;
+  }
+
+ /* 登录页 */
+ body {
+  padding: 0;
+  margin:0
+ }
+
+.landingHB {
+  background-image: url('./images/高达.jpg'); /* 只在登录页使用背景图片 */
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* 固定在屏幕 */
+  width: 100vw;
+  height: 100vh; /* 确保占满整个页面高度 */
+  top: 0; /* 确保在顶部 */
+  z-index: 1000; /* 确保它在最上层 */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  opacity: 1; /* 初始显示 */
+  visibility: visible; /* 初始可见 */
+}
+
+/* 隐藏 landing 页时的样式 */
+.landingHB.hidden {
+  opacity: 0; /* 渐隐效果 */
+  visibility: hidden; /* 不可见 */
+}
+
+/* b 元素及其样式（仅在 .landingHB 内部生效） */
+.landingHB .a {
+  width:100%;
+  height: 100vh;
+  position: relative;
+  top: 50px;
+  width: 700px; 
+  height: 140px;
+  border: solid 10px #fff;
+  box-shadow: 0 0 70px rgb(190, 40, 210);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* 设置鼠标移上去时变成小手形状 */
+}
+
+.landingHB .a::after {
+  content: '';
+  position: absolute;
+  width: 700px;
+  height: 140px;
+  box-shadow: 0 0 5px rgba(190, 40, 210);
+  background-color: rgba(100, 30, 225, .4);
+}
+
+.landingHB .a:hover {
+  animation: a 0.2s;
+}
+
+.landingHB .b, .landingHB .b::before {
+  z-index: 999;
+  color: #fff;
+  position: absolute;
+  font-size: 65px;
+  font-weight: 900;
+  letter-spacing: 12px; /* 设置字体间距 */
+  text-align: center;
+  white-space: nowrap; /* 确保文字不换行 */
+}
+
+.landingHB .b::before {
+  content: 'Happy Birthday';
+  text-shadow: -5px -5px 0px rgb(211, 250, 9), 5px 5px 0px rgb(25, 10, 240);
+  clip-path: inset(100% 0px 0px 0px); /* 初始状态，显示部分文字 */
+}
+
+.landingHB .a:hover .b::before {
+  animation: move 1.25s steps(2); /* 启用混乱动画效果 */
+}
+
+/* Happy Birthday 混乱效果的 keyframes */
+@keyframes move {
+  0% {
+    clip-path: inset(80% 0px 0px 0px);
+    transform: translate(-20px, -10px);
+  }
+  10% {
+    clip-path: inset(10% 0px 85% 0px);
+    transform: translate(10px, 10px);
+  }
+  20% {
+    clip-path: inset(80% 0px 0px 0px);
+    transform: translate(-10px, 10px);
+  }
+  30% {
+    clip-path: inset(10% 0px 85% 0px);
+    transform: translate(0px, 5px);
+  }
+  40% {
+    clip-path: inset(50% 0px 30% 0px);
+    transform: translate(-5px, 0px);
+  }
+  50% {
+    clip-path: inset(10% 0px 30% 0px);
+    transform: translate(5px, 0px);
+  }
+  60% {
+    clip-path: inset(40% 0px 30% 0px);
+    transform: translate(5px, 10px);
+  }
+  70% {
+    clip-path: inset(50% 0px 30% 0px);
+    transform: translate(-10px, 10px);
+  }
+  80% {
+    clip-path: inset(80% 0px 5% 0px);
+    transform: translate(20px, -10px);
+  }
+  90% {
+    clip-path: inset(80% 0px 0px 0px);
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    clip-path: inset(80% 0px 0px 0px);
+    transform: translate(0px, 0px);
+  }
+}
+
+/* 主页面样式 */
+body .main {
+  width: 100%;
+  height: auto;
+  position: relative;
+  top: 0; /* 从页面顶部开始 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(174, 224, 238);
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+/* 主页面的导航栏样式 */
+body .main-nav {
+  width: 100%;
+  height: 60px;
+  position: sticky;
+  z-index: 999;
+  top: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 18vh;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.6));
+  backdrop-filter: blur(13px);
+}
+
+body .main-nav .BBlogo {
+  width: 220px;
+  height: 100%;
+  position: absolute;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* 确保文字不换行 */
+}
+
+body .main-nav .BBlogo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+body .main-nav .BBlogo span {
+  font: 100 22px "ZCOOL KuaiLe";
+  letter-spacing: 5px;
+  padding-left: 20px;
+}
+
+body .main-nav ul {
+  width: 600px;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 5%;
+  padding: 0;
+  margin: 0;
+}
+
+body .main-nav ul .nav-box {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 115px;
+  height: 5px;
+  border-radius: 2px;
+  z-index: -999;
+  transition: .5s;
+}
+
+body .main-nav ul li {
+  width: 150px;
+  text-align: center;
+}
+
+body .main-nav ul li a {
+  color: #000;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  text-align: center;
+  text-decoration: none; /* 取消下划线 */
+}
+
+
+
+
+/* 主页面的祝福语部分样式 */
+body .main-lbt {
+  font-family: "ZCOOL KuaiLe";
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  background-color: #978989;
+  margin-bottom: 100px;
+  overflow: hidden;
+  background-image: url("./images/lbt.gif");
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size:80% auto;
+  background-position: 50%
+}
+
+body .main-lbt .images {
+  width: 300%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  transition: .1s;
+}
+
+body .main-lbt .images .img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+body .main-lbt .images .img .main-lbt-word {
+  width: 100%;
+  max-width: 900px;
+  overflow-x: hidden;
+  height: 500px;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transform: translateY(40px);
+  transition: .5s;
+}
+
+body .main-lbt .images .img .main-lbt-word h2 {
+  font: 400 80px "ZCOOL KuaiLe";
+  color: white;
+  justify-content: center;
+  text-align: center;
+  transition: .6s;
+  transition-delay: .4s;
+  transform: translate(0);
+}
+
+body .main-lbt .images .img .main-lbt-word span {
+  font-family: "ZCOOL KuaiLe";
+  font-size: 50px;
+  color: white;
+  justify-content: center;
+  text-align: center;
+  transition: .6s;
+  transition-delay: .4s;
+  transform: translate(0);
+}
+  
+  body .main-lbt .min-images {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 20px;
+    width: 40%;
+    z-index: 999;
+    right: 10%;
+  }
+  
+  body .main-lbt .button {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+  }
+  
+  body .main-lbt .button .button-left,
+  body .main-lbt .button .button-right {
+    font-size: 50px;
+    background-color: rgba(244, 99, 99, 0.7);
+    cursor: pointer;
+    line-height: 500px;
+    width: 80px;
+  display: flex;   /* 使用 flexbox 将内容居中 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */}
+
+
+  /* 点击跳转页面 */
+  body .shell-main-bottom {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 510px;
+    flex-direction: column;
+  }
+  
+  body .shell-main-bottom h2 {
+    font: 100 34px 'font';
+    color: #48afa5;
+    letter-spacing: 5px;
+    margin-left: 100px;
+  }
+  
+  body .shell-main-bottom h2 span {
+    font-size: 80px;
+    color: turquoise;
+  }
+  
+  body .shell-main-bottom-bottom {
+    width: 100%;
+    height: auto;
+    padding: 20px 0 100px 0;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(30px);
+    position: relative;
+  }
+  
+  body .shell-main-bottom-bottom::before {
+    content: '';
+    width: 250px;
+    height: 250px;
+    border: 20px solid rgba(0, 255, 255, 0.3);
+    position: absolute;
+    border-radius: 10px;
+    right: 70px;
+    top: 100px;
+    transform: rotate(30deg) translate(-50%, -50%);
+    animation: transform 4s infinite;
+    opacity: 0.8;
+    z-index: -999;
+  }
+  
+  @keyframes transform {
+    0% {
+      transform: rotate(30deg);
+    }
+  
+    50% {
+      transform: rotate(40deg);
+    }
+  
+    100% {
+      transform: rotate(30deg);
+    }
+  }
+  
+  body .shell-main-bottom-bottom ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  
+  body .shell-main-bottom-bottom ul li {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 12px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    transition: .3s;
+    margin-bottom: 100px;
+  }
+  
+  body .shell-main-bottom-bottom ul li span {
+    font-size: 10px;
+  }
+  
+  body .shell-main-bottom-bottom ul li:hover {
+    padding: 2px;
+    margin: 8px;
+  }
+  
+  body .shell-main-bottom-bottom ul li:hover h2 {
+    letter-spacing: 3px;
+  }
+  
+  body .shell-main-bottom-bottom ul li img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  body .shell-main-bottom-bottom ul li h2 {
+    margin: 40px 0 10px 0;
+    font-family: "ZCOOL KuaiLe", sans-serif;
+    font-size: 24px;
+    transition: .3s;
+    color: black;
+    text-align: center;
+    letter-spacing: 0;
+  }
+  
+  body .shell-main-bottom-bottom ul li span {
+    color: #525252;
+    font-size: 15px;
+    position: center;
+  }
