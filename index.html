@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> JYC loves YYY three thousands❤</title>
+  <link rel="stylesheet" href="index.css">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- 着陆页 -->
+    <div class="landingHB">
+      <div class="a">
+        <div class="b"><span>Happy Birthday</span></div>
+      </div>
+    </div>
+  
+    <!-- 主页面 -->
+    <div class="main">
+      <div class="main-nav">
+        <div class="BBlogo">
+          <img src="images/BB头像.jpg" alt="">
+          <span>♥亲亲bb生日快乐♥ </span>
+        </div>
+        <ul>
+          <li><a href="./index.html">生日快乐</a></li>
+          <li><a href="./About BB.html">关于bb</a></li>
+          <li><a href="./Us.html">点点滴滴</a></li>
+          <li><a href="./comment.html">留言板</a></li>
+          <li><a href="./Login.html">登录</a></li>
+        </ul>
+        <div class="nav-box"></div>
+      </div>
+      <div class="main-lbt">
+        <ul class="images">
+          <li class="img">
+            <div class="main-lbt-word">
+              <h2>亲爱的bb祝你生日快乐！<br /><br />🎂🎂🎂</h2>
+            </div>
+          </li>
+          <li class="img">
+            <div class="main-lbt-word">
+              <h2>💪身体健康💪</h2><br />
+              <span>新的一岁要多休息，早睡觉，多锻炼身体，照顾好自己！</span>
+            </div>
+          </li>
+          <li class="img">
+            <div class="main-lbt-word">
+              <h2>🥼实验顺利🧪</h2><br />
+              <span>希望bb的实验都顺顺利利，paper手到擒来，拳打同事，脚踢小人🤗</span>
+            </div>
+          </li>
+        </ul>
+        <ul class="min-images">
+          <li class="min"></li>
+          <li class="min"></li>
+          <li class="min"></li>
+        </ul>
+        <div class="button">
+          <div class="button-left">&lt;</div>
+          <div class="button-right">&gt;</div>
+        </div>
+      </div>
+
+          <!-- 点击跳转别的网页 -->
+    <div class="shell-main-bottom">
+        <h2><span>在</span>这里转转吧！</h2>
+        <div class="shell-main-bottom-bottom">
+            <ul>
+                <li>
+                  <a href="./About BB.html">
+                    <img src="images/bb_cuteee.jpg" alt="">
+                  </a>  
+                    <h2>关于bb:</h2>
+                    <span>亲爱的bb是怎么来到我身边的呢🤔</span>
+                </li>
+                <li>
+                  <a href="./Us.html">
+                    <img src="images/tapis.jpg" alt="">
+                  </a>
+                    <h2>点点滴滴:</h2>
+                    <span>YYY和JYC的幸福日常♥</span>
+                </li>
+                <li>
+                  <a href="./comment.html">
+                    <img src="images/我的bb.png" alt="">
+                  </a>
+                    <h2>留言板:</h2>
+                    <span>快来你的空间踩踩吧👣👣</span>
+                </li>
+                <li>
+                  <a href="Login.html">
+                    <img src="images/bb_with_flower.jpg" alt="">
+                  </a>
+                    <h2>登录:</h2>
+                    <span>登录查看彩蛋！</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+  <!-- 引入jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    window.addEventListener('scroll', function () {
+    let top = window.scrollY;
+    if (top > window.innerHeight) {
+        // 当页面滚动到超过一屏的距离时，隐藏 .landingHB
+        document.querySelector('.landingHB').classList.add('hidden');
+    } else {
+        // 如果滚动回顶部，显示 .landingHB
+        document.querySelector('.landingHB').classList.remove('hidden');
+    }
+});
+
+    window.addEventListener('scroll', function () {
+        let top = window.scrollY
+        if (top != 0) {
+            $('.landingHB').css('top', '-100vh')
+            $('.main').css('top', '0')
+            $('.main-lbt-word').css('transform', 'translateY(0px)')
+            $('.main-lbt-word').css('backdrop-filter', 'blur(5px)')
+            $('.main-lbt-word h2').css('transform', 'translate(0px)')
+            $('.main-lbt-word span').css('transform', 'translate(0px)')
+        } else {
+            $('.landingHB').css('top', '0px')
+            $('.main').css('top', '100vh')
+            $('.main-lbt-word').css('transform', 'translateY(400px)')
+            $('.main-lbt-word').css('backdrop-filter', 'blur(0px)')
+            $('.main-lbt-word h2').css('transform', 'translate(520px)')
+            $('.main-lbt-word span').css('transform', 'translate(-620px)')
+        }
+    })
+
+    let left = document.querySelector(".button-left")
+    let right = document.querySelector(".button-right")
+    let min = document.querySelectorAll(".min")
+    let images = document.querySelector(".images")
+    let index = 0
+    let time
+
+    function position() {
+        images.style.left = (index * -100) + "%"
+    }
+
+    function add() {
+        if (index >= min.length - 1) {
+            index = 0
+        } else {
+            index++
+        }
+    }
+
+    function desc() {
+        if (index < 1) {
+            index = min.length - 1
+        } else {
+            index--
+        }
+    }
+
+    function timer() {
+        time = setInterval(() => {
+            add()
+            position()
+        }, 3400) // 调整为3.4秒
+    }
+
+    left.addEventListener("click", () => {
+        desc()
+        position()
+        clearInterval(time)
+        timer()
+    })
+
+    right.addEventListener("click", () => {
+        add()
+        position()
+        clearInterval(time)
+        timer()
+    })
+
+    for (let i = 0; i < min.length; i++) {
+        min[i].addEventListener("click", () => {
+            index = i
+            position()
+            clearInterval(time)
+            timer()
+        })
+    }
+
+    timer()
+  </script>
+</body>
+</html>
