@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All about my sweetheart❤</title>
+  <link rel="stylesheet" href="CSS/About BB.css">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!--导航栏-->
+<div class="main">
+    <div class="main-nav">
+      <div class="BBlogo">
+        <img src="images/BB头像.jpg" alt="">
+        <span>♥亲亲bb生日快乐♥ </span>
+      </div>
+      <ul>
+        <li><a href="./index.html">生日快乐</a></li>
+        <li><a href="./About BB.html">关于bb</a></li>
+        <li><a href="./Us.html">点点滴滴</a></li>
+        <li><a href="./comment.html">留言板</a></li>
+        <li><a href="./Login.html">登录</a></li>
+      </ul>
+      <div class="nav-box"></div>
+    </div>
+
+<!-- 关于bb的时间轴 -->
+<div class="shell" id="shell">
+    <div class="header">
+        <h2 class="title">BB是怎么来到我身边的呢</h2>
+        <h3 class="subtitle">About my lovely YYY</h3>
+    </div>
+    <div class="timeline">
+        <div class="item" data-text="《BB的诞生》">
+            <div class="content">
+                <img src="images/02.jpg" alt="" class="img">
+                <h2 class="content-title">1997</h2>
+                <p class="content-desc">
+                    11月5日，YYY小朋友，幸运地出生啦！
+                </p>
+            </div>
+        </div>
+
+        <div class="item" data-text="《开启求学路》">
+            <div class="content">
+                <img src="images/little_BB.jpg" alt="" class="img">
+                <h2 class="content-title">2005</h2>
+                <p class="content-desc">
+                    亲亲BB开始上小学了，虽然遇到了坏小孩，
+                    但是也是和娜娜友谊的开始。
+                </p>
+            </div>
+        </div>
+
+        <div class="item" data-text="《高中副本通关》">
+            <div class="content">
+                <img src="images/BB_highschool.jpg" alt="" class="img">
+                <h2 class="content-title">2016</h2>
+                <p class="content-desc">
+                    BB顺利结束了高考🎉！BB在高中副本激情打怪的同时还不忘沾花惹草🥹
+                </p>
+            </div>
+        </div>
+
+        <div class="item" data-text="《New life in Paris》">
+            <div class="content">
+                <img src="images/frog.jpg" alt="" class="img">
+                <h2 class="content-title">2017</h2>
+                <p class="content-desc">
+                    新的阶段来临！
+                    法国留学生涯, 启动！(虽然这张不是在巴黎hh)
+                </p>
+            </div>
+        </div>
+
+        <div class="item" data-text="《闪光的BB》">
+            <div class="content">
+                <img src="images/Horse_head.jpg" alt="" class="img">
+                <h2 class="content-title">2023</h2>
+                <p class="content-desc">
+                    恭喜BB顺利读博！！
+                    耗神费心的一年给BB带来了事业和爱情的双丰收♥
+                </p>
+            </div>
+        </div>
+
+        <div class="item" data-text="《生日快乐》">
+            <div class="content">
+                <img src="images/kiss.jpg" alt="" class="img">
+                <h2 class="content-title">2024</h2>
+                <p class="content-desc">
+                    BB，又是一年11月5日，祝你生日快乐，开开心心，实验顺利！
+                    希望我能够继续陪伴着你，我很在意自己错过了你的过去，但我希望自己能够抓紧你的未来。
+                    我爱你，亲亲。
+                </p>
+            </div>
+        </div>
+
+        <div class="item" data-text="《我们的岁岁年年》">
+            <div class="content">
+                <img src="images/tapis.jpg" alt="" class="img">
+                <h2 class="content-title">TBC...</h2>
+                <p class="content-desc">
+                    BB的人生还在继续，希望BB的身边一直有我♥
+                    永远爱你，我最亲爱的BB。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    (function ($) {
+        $.fn.timeline = function () {
+            var selectors = {
+                id: $(this),
+                item: $(this).find(".item"),
+                activeClass: "item--active",
+                img: ".img"
+            };
+
+            // 确保所有资源加载后执行
+            $(window).on('load', function() {
+                // 将第一个时间轴项目激活，并设置时间轴背景图片为第一个项目的图片
+                selectors.item.eq(0).addClass(selectors.activeClass);
+                selectors.id.css({
+                    "background-image": "url(" + selectors.item.first().find(selectors.img).attr("src") + ")",
+                    "background-size": "cover",
+                    "background-position": "center",
+                    "background-repeat": "no-repeat"
+                });
+
+                // 获取时间轴项目的总数
+                var itemLength = selectors.item.length;
+
+                // 当页面滚动时，触发滚动事件
+                $(window).scroll(function () {
+                    var max, min;
+                    // 获取页面滚动的距离
+                    var pos = $(this).scrollTop();
+                    selectors.item.each(function (i) {
+                        // 获取当前时间轴项目的最小和最大高度
+                        min = $(this).offset().top;
+                        max = $(this).height() + $(this).offset().top;
+
+                        // 如果滚动到最后一个项目，并且超过了当前项目高度的一半
+                        if (i === itemLength - 2 && pos > min + $(this).height() / 2) {
+                            selectors.item.removeClass(selectors.activeClass);
+                            selectors.id.css({
+                                "background-image": "url(" + selectors.item.last().find(selectors.img).attr("src") + ")",
+                                "background-size": "cover",
+                                "background-position": "center",
+                                "background-repeat": "no-repeat"
+                            });
+                            selectors.item.last().addClass(selectors.activeClass);
+                        }
+                        // 如果当前滚动位置在当前项目的最小和最大高度之间
+                        else if (pos <= max - 10 && pos >= min) {
+                            selectors.id.css({
+                                "background-image": "url(" + $(this).find(selectors.img).attr("src") + ")",
+                                "background-size": "cover",
+                                "background-position": "center",
+                                "background-repeat": "no-repeat"
+                            });
+                            selectors.item.removeClass(selectors.activeClass);
+                            $(this).addClass(selectors.activeClass);
+                        }
+                    });
+                });
+            });
+        };
+    })(jQuery);
+
+    // 启动timeline效果
+    $("#shell").timeline();
+</script>
+</body>
+</html>
+
